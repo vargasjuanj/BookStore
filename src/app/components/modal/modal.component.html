@@ -1,0 +1,80 @@
+<div class="modal fade" id="modalBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{this.dataApiService.selectedBook.id? 'Update Book': 'New Book'}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="resetForm(formBook)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #formBook="ngForm" (ngSubmit)="onSaveBook(formBook)">
+                    <div class="form-group">
+                        <label for="id">idBook</label>
+                        <input class ="form-control" type="text" name="id" [(ngModel)]="this.dataApiService.selectedBook.id">
+                        <label for="id">userUid</label>
+                        <input class ="form-control" type="text" name="userUid" [value]="userUid" >
+                       <!-- con el ngModel la el input de arriba saldria en blanco, por eso se usa value, porque es una propiedad especial que usa @input, por eso usamos [value]-->
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="titulo" class="col-form-label">Título:</label>
+                        <input type="text" class="form-control" name="titulo" [(ngModel)]="this.dataApiService.selectedBook.titulo">
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="idioma">Idioma</label>
+                            <select name="idioma" class="form-control" [(ngModel)]="this.dataApiService.selectedBook.idioma">
+                                <option value="ingles">Ingles</option>
+                                <option value="castellanos">Castellano</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="idioma">Precio:</label>
+                            <input type="text" class="form-control" name="precio" placeholder="$0.00" [(ngModel)]="this.dataApiService.selectedBook.precio">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="autor">Autor:</label>
+                            <input type="text" name=autor class="form-control" placeholder="Autor" [(ngModel)]="this.dataApiService.selectedBook.autor">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Oferta">Oferta:</label>
+                            <select class="form-control" name="oferta" [(ngModel)]="this.dataApiService.selectedBook.oferta">
+                                <option value="1">SI</option>
+                                <option value="0">NO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row" >
+                        <div class="form-group col-md-6">
+                            <label for="portada">Portada:</label>
+                            <input type="text" name="portada" class="form-control" placeholder="Portada" [(ngModel)]="this.dataApiService.selectedBook.portada">
+
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="link_Amazon">Link Amazon:</label>
+                            <input type="text" name="link_amazon" class="form-control" placeholder="Link Amazon" [(ngModel)]="this.dataApiService.selectedBook.link_amazon">
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion" class="col-form-label">Descripción</label>
+                        <textarea class="form-control" name="descripcion" [(ngModel)]="this.dataApiService.selectedBook.descripcion"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button #btnClose type="button" class="btn btn-secondary" data-dismiss="modal" (click)="resetForm(formBook)">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Book</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
